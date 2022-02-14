@@ -12,7 +12,7 @@ import {
 import { DrawerNavigatorItems } from "react-navigation-drawer";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/actions/auth";
-import bgImage from "../assets/bg-2.jpg";
+import bgImage from "../assets/greenary_bg.jpeg";
 import profilePic from "../assets/user-image.png";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { fetchUser } from "../store/actions/auth";

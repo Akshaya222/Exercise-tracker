@@ -19,6 +19,7 @@ import {
   fetchUser,
 } from "../store/actions/auth";
 import meshBg from "../assets/mesh-bg.png";
+import { globalStyles } from "../styles/GlobalStyles";
 
 const LoginScreen = (props) => {
   const dispatch = useDispatch();
@@ -71,7 +72,9 @@ const LoginScreen = (props) => {
   };
 
   return (
-    <View style={styles.backgroundImage}>
+    <View
+      style={{ ...globalStyles.backgroundImage, ...styles.backgroundImage }}
+    >
       <LinearGradient colors={["rgba(0,0,0,0.6)", "rgba(0,0,0,0.6)"]} />
       <View style={styles.screen}>
         <View style={styles.imageContainer}>
@@ -125,8 +128,7 @@ const LoginScreen = (props) => {
             </Text>
           </View>
           <TouchableOpacity
-            style={styles.button}
-            style={styles.button}
+            style={{ ...styles.button, ...globalStyles.buttonStyles }}
             onPress={clickHandler}
           >
             <Text
@@ -198,7 +200,6 @@ const styles = StyleSheet.create({
     color: "#555956",
   },
   button: {
-    backgroundColor: "rgba(0,0,0,0.7)",
     borderColor: "#000",
     borderWidth: 1,
     marginVertical: "7%",

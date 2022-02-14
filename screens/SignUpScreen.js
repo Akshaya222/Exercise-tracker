@@ -19,6 +19,7 @@ import {
   authenticate,
   fetchUser,
 } from "../store/actions/auth";
+import { globalStyles } from "../styles/GlobalStyles";
 
 const LoginScreen = (props) => {
   const dispatch = useDispatch();
@@ -74,7 +75,9 @@ const LoginScreen = (props) => {
       });
   };
   return (
-    <View style={styles.backgroundImage}>
+    <View
+      style={{ ...styles.backgroundImage, ...globalStyles.backgroundImage }}
+    >
       <LinearGradient colors={["rgba(0,0,0,0.6)", "rgba(0,0,0,0.6)"]} />
       <View style={styles.screen}>
         <View style={styles.imageContainer}>
@@ -142,7 +145,10 @@ const LoginScreen = (props) => {
               placeholderTextColor="black"
             />
           </View>
-          <TouchableOpacity style={styles.button} onPress={clickHandler}>
+          <TouchableOpacity
+            style={{ ...styles.button, ...globalStyles.buttonStyles }}
+            onPress={clickHandler}
+          >
             <Text
               style={{ textAlign: "center", color: "#fff", fontWeight: "bold" }}
             >
@@ -211,7 +217,6 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   button: {
-    backgroundColor: "rgba(0,0,0,0.7)",
     borderColor: "#000",
     borderWidth: 1,
     marginBottom: "6%",

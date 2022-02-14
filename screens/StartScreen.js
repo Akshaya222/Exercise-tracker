@@ -15,6 +15,8 @@ import { fetchUser } from "../store/actions/auth";
 
 import * as AuthActions from "../store/actions/auth";
 import foodImage from "../assets/food.jpg";
+import { globalStyles } from "../styles/GlobalStyles";
+import colors from "../constants/colors";
 
 const StartScreen = (props) => {
   const dispatch = useDispatch();
@@ -59,7 +61,7 @@ const StartScreen = (props) => {
         <Text style={styles.text}>Best way to invest your time!</Text>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            style={styles.button}
+            style={{ ...styles.button, ...globalStyles.buttonStyles }}
             onPress={() => {
               props.navigation.navigate("signUpScreen");
             }}
@@ -107,7 +109,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   button: {
-    backgroundColor: "rgba(0,0,0,0.7)",
     borderColor: "#000",
     borderWidth: 1,
     width: "100%",
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderWidth: 1,
     borderStyle: "solid",
-    borderColor: "rgba(0,0,0,0.7)",
+    borderColor: colors.buttonColor,
     width: "100%",
     paddingVertical: "4%",
     borderRadius: 10,

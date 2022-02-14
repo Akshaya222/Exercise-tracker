@@ -146,7 +146,6 @@ const InitialReccomendation = (props) => {
         <TouchableOpacity
           onPress={() => props.navigation.navigate("uploadScreen")}
           style={{
-            backgroundColor: "rgba(242,145,152,0.8)",
             height: 30,
             width: 60,
             alignItems: "center",
@@ -157,6 +156,7 @@ const InitialReccomendation = (props) => {
             position: "absolute",
             right: 10,
             top: 5,
+            ...globalStyles.buttonStyles,
           }}
         >
           <Text style={{ fontWeight: "bold" }}>Skip</Text>
@@ -271,7 +271,7 @@ const InitialReccomendation = (props) => {
           <TouchableOpacity
             onPress={savePreferencesHandler}
             style={{
-              backgroundColor: "rgba(242,145,152,1)",
+              ...globalStyles.buttonStyles,
               height: 40,
               width: 170,
               alignItems: "center",

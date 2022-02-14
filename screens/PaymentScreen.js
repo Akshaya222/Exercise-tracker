@@ -309,7 +309,11 @@ const Payment = (props) => {
                     >
                       <TouchableOpacity
                         onPress={() => setIsPaid(false)}
-                        style={{ ...styles.uploadButton, width: 200 }}
+                        style={{
+                          ...styles.uploadButton,
+                          width: 200,
+                          ...globalStyles.buttonStyles,
+                        }}
                       >
                         <Text
                           style={{ fontWeight: "bold", textAlign: "center" }}
@@ -732,7 +736,6 @@ const styles = StyleSheet.create({
     height: 70,
   },
   uploadButton: {
-    backgroundColor: "rgba(242,145,152,0.7)",
     elevation: 6,
     paddingVertical: 8,
     paddingHorizontal: 15,
