@@ -18,6 +18,7 @@ import meshBg from "../assets/mesh-bg.png";
 import foodImage from "../assets/food.jpg";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import loadingSpinner from "../assets/loading-new.gif";
+import OuterContainer from "../components/OuterContainer";
 
 const RecentMealsScreen = (props) => {
   const dispatch = useDispatch();
@@ -146,8 +147,8 @@ const RecentMealsScreen = (props) => {
                       }}
                       key={image._id}
                     >
-                      <View
-                        style={{
+                      <OuterContainer
+                        styles={{
                           ...globalStyles.outerContainer,
                           width: 110,
                           height: 110,
@@ -156,60 +157,48 @@ const RecentMealsScreen = (props) => {
                           zIndex: 10,
                         }}
                       >
-                        <ImageBackground
-                          source={meshBg}
-                          style={globalStyles.imageBackgroundInner}
-                        >
-                          <View style={{ ...globalStyles.innerContainer }}>
-                            <Image
-                              source={{ uri: image.url }}
-                              style={{ width: "100%", height: "100%" }}
-                            />
-                          </View>
-                        </ImageBackground>
-                      </View>
-                      <View
-                        style={{
+                        <View style={{ ...globalStyles.innerContainer }}>
+                          <Image
+                            source={{ uri: image.url }}
+                            style={{ width: "100%", height: "100%" }}
+                          />
+                        </View>
+                      </OuterContainer>
+                      <OuterContainer
+                        styles={{
                           ...globalStyles.outerContainer,
                           width: 150,
                           height: 180,
                           marginVertical: 0,
                         }}
                       >
-                        <ImageBackground
-                          source={meshBg}
-                          style={globalStyles.imageBackgroundInner}
+                        <View
+                          style={{
+                            ...globalStyles.innerContainer,
+                            padding: 20,
+                          }}
                         >
-                          <View
+                          <Text style={{ color: "black", fontWeight: "bold" }}>
+                            {image.name}
+                          </Text>
+                          <Text
                             style={{
-                              ...globalStyles.innerContainer,
-                              padding: 20,
+                              color: "rgba(0,0,0,0.5)",
+                              fontWeight: "bold",
                             }}
                           >
-                            <Text
-                              style={{ color: "black", fontWeight: "bold" }}
-                            >
-                              {image.name}
-                            </Text>
-                            <Text
-                              style={{
-                                color: "rgba(0,0,0,0.5)",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              {image.calories} cal
-                            </Text>
-                            {image.isFavorite ? (
-                              <AntDesign
-                                name="heart"
-                                size={16}
-                                color="black"
-                                style={{ marginTop: 3 }}
-                              />
-                            ) : null}
-                          </View>
-                        </ImageBackground>
-                      </View>
+                            {image.calories} cal
+                          </Text>
+                          {image.isFavorite ? (
+                            <AntDesign
+                              name="heart"
+                              size={16}
+                              color="black"
+                              style={{ marginTop: 3 }}
+                            />
+                          ) : null}
+                        </View>
+                      </OuterContainer>
                     </TouchableOpacity>
                   );
                 })}

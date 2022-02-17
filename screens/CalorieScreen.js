@@ -25,6 +25,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import meshBg from "../assets/mesh-bg.png";
 import { logout } from "../store/actions/auth";
 import foodImage from "../assets/food.jpg";
+import OuterContainer from "../components/OuterContainer";
 import axios from "axios";
 
 export default function ImageScreen(props) {
@@ -226,119 +227,111 @@ export default function ImageScreen(props) {
           style={{ height: "80%", width: "100%", marginBottom: "18%" }}
         >
           <View style={{ width: "100%", width: "100%", alignItems: "center" }}>
-            <View
-              style={{
+            <OuterContainer
+              styles={{
                 ...globalStyles.outerContainer,
                 width: "85%",
                 height: 200,
               }}
             >
-              <ImageBackground
-                source={meshBg}
-                style={globalStyles.imageBackgroundInner}
+              <View
+                style={{
+                  ...globalStyles.innerContainer,
+                  flexDirection: "row",
+                  justifyContent: "space-evenly",
+                }}
               >
-                <View
-                  style={{
-                    ...globalStyles.innerContainer,
-                    flexDirection: "row",
-                    justifyContent: "space-evenly",
-                  }}
-                >
-                  <PieChart
-                    widthAndHeight={widthAndHeight}
-                    series={series}
-                    sliceColor={sliceColor}
-                    doughnut={true}
-                    coverRadius={0.6}
-                    coverFill={"#FFF"}
-                  />
-                  <View>
+                <PieChart
+                  widthAndHeight={widthAndHeight}
+                  series={series}
+                  sliceColor={sliceColor}
+                  doughnut={true}
+                  coverRadius={0.6}
+                  coverFill={"#FFF"}
+                />
+                <View>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      marginBottom: 6,
+                    }}
+                  >
                     <View
                       style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        marginBottom: 6,
+                        height: 15,
+                        width: 20,
+                        backgroundColor: sliceColor[0],
+                        marginRight: 4,
                       }}
-                    >
-                      <View
-                        style={{
-                          height: 15,
-                          width: 20,
-                          backgroundColor: sliceColor[0],
-                          marginRight: 4,
-                        }}
-                      ></View>
-                      <Text style={{ fontWeight: "bold" }}>
-                        <Text style={{ color: "rgba(0,0,0,0.5)" }}>Carbs</Text>{" "}
-                        10%
-                      </Text>
-                    </View>
+                    ></View>
+                    <Text style={{ fontWeight: "bold" }}>
+                      <Text style={{ color: "rgba(0,0,0,0.5)" }}>Carbs</Text>{" "}
+                      10%
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      marginBottom: 6,
+                    }}
+                  >
                     <View
                       style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        marginBottom: 6,
+                        height: 15,
+                        width: 20,
+                        backgroundColor: sliceColor[1],
+                        marginRight: 4,
                       }}
-                    >
-                      <View
-                        style={{
-                          height: 15,
-                          width: 20,
-                          backgroundColor: sliceColor[1],
-                          marginRight: 4,
-                        }}
-                      ></View>
-                      <Text style={{ fontWeight: "bold" }}>
-                        <Text style={{ color: "rgba(0,0,0,0.5)" }}>
-                          Proteins
-                        </Text>{" "}
-                        40%
-                      </Text>
-                    </View>
+                    ></View>
+                    <Text style={{ fontWeight: "bold" }}>
+                      <Text style={{ color: "rgba(0,0,0,0.5)" }}>Proteins</Text>{" "}
+                      40%
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      marginBottom: 6,
+                    }}
+                  >
                     <View
                       style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        marginBottom: 6,
+                        height: 15,
+                        width: 20,
+                        backgroundColor: sliceColor[2],
+                        marginRight: 4,
                       }}
-                    >
-                      <View
-                        style={{
-                          height: 15,
-                          width: 20,
-                          backgroundColor: sliceColor[2],
-                          marginRight: 4,
-                        }}
-                      ></View>
-                      <Text style={{ fontWeight: "bold" }}>
-                        <Text style={{ color: "rgba(0,0,0,0.5)" }}>Fats</Text>{" "}
-                        50%
-                      </Text>
-                    </View>
+                    ></View>
+                    <Text style={{ fontWeight: "bold" }}>
+                      <Text style={{ color: "rgba(0,0,0,0.5)" }}>Fats</Text> 50%
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      marginBottom: 6,
+                    }}
+                  >
                     <View
                       style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        marginBottom: 6,
+                        height: 15,
+                        width: 20,
+                        backgroundColor: sliceColor[3],
+                        marginRight: 4,
                       }}
-                    >
-                      <View
-                        style={{
-                          height: 15,
-                          width: 20,
-                          backgroundColor: sliceColor[3],
-                          marginRight: 4,
-                        }}
-                      ></View>
-                      <Text style={{ fontWeight: "bold" }}>
-                        <Text style={{ color: "rgba(0,0,0,0.5)" }}>Fibers</Text>{" "}
-                        50%
-                      </Text>
-                    </View>
+                    ></View>
+                    <Text style={{ fontWeight: "bold" }}>
+                      <Text style={{ color: "rgba(0,0,0,0.5)" }}>Fibers</Text>{" "}
+                      50%
+                    </Text>
                   </View>
                 </View>
-              </ImageBackground>
-            </View>
+              </View>
+            </OuterContainer>
             <View style={{ height: 280, width: "98%", marginBottom: 20 }}>
               <Text
                 style={{
@@ -352,325 +345,320 @@ export default function ImageScreen(props) {
               <View
                 style={{ width: "100%", height: "100%", alignItems: "center" }}
               >
-                <View
-                  style={{
+                <OuterContainer
+                  styles={{
                     ...globalStyles.outerContainer,
                     width: "85%",
                     height: "90%",
                   }}
                 >
-                  <ImageBackground
-                    source={meshBg}
-                    style={globalStyles.imageBackgroundInner}
+                  <View
+                    style={{
+                      ...globalStyles.innerContainer,
+                      padding: 20,
+                    }}
                   >
-                    <View
-                      style={{
-                        ...globalStyles.innerContainer,
-                        padding: 20,
-                      }}
-                    >
-                      <View style={{ width: "100%", height: "100%" }}>
-                        <View
+                    <View style={{ width: "100%", height: "100%" }}>
+                      <View
+                        style={{
+                          width: "95%",
+                          flexDirection: "row",
+                          justifyContent: "space-between",
+                          marginBottom: 15,
+                        }}
+                      >
+                        <Text
                           style={{
-                            width: "95%",
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            marginBottom: 15,
+                            backgroundColor: "#E6E7E8",
+                            paddingVertical: 8,
+                            paddingHorizontal: 14,
+                            borderRadius: 13,
+                            elevation: 5,
                           }}
                         >
-                          <Text
-                            style={{
-                              backgroundColor: "#E6E7E8",
-                              paddingVertical: 8,
-                              paddingHorizontal: 14,
-                              borderRadius: 13,
-                              elevation: 5,
-                            }}
-                          >
-                            Items
+                          Items
+                        </Text>
+                        <Text
+                          style={{
+                            backgroundColor: "#E6E7E8",
+                            paddingVertical: 8,
+                            paddingHorizontal: 12,
+                            borderRadius: 13,
+                            elevation: 5,
+                          }}
+                        >
+                          Quantity
+                        </Text>
+                      </View>
+                      <View>
+                        {!isIngre ? (
+                          <Text style={{ marginLeft: 8, fontWeight: "bold" }}>
+                            No Ingredients
                           </Text>
-                          <Text
-                            style={{
-                              backgroundColor: "#E6E7E8",
-                              paddingVertical: 8,
-                              paddingHorizontal: 12,
-                              borderRadius: 13,
-                              elevation: 5,
-                            }}
+                        ) : (
+                          <ScrollView
+                            style={{ width: "100%", height: 210 }}
+                            nestedScrollEnabled={true}
                           >
-                            Quantity
-                          </Text>
-                        </View>
-                        <View>
-                          {!isIngre ? (
-                            <Text style={{ marginLeft: 8, fontWeight: "bold" }}>
-                              No Ingredients
-                            </Text>
-                          ) : (
-                            <ScrollView
-                              style={{ width: "100%", height: 210 }}
-                              nestedScrollEnabled={true}
+                            <View
+                              style={{
+                                width: "100%",
+                                marginLeft: "7%",
+                                paddingBottom: 20,
+                                flexGrow: 1,
+                              }}
                             >
-                              <View
-                                style={{
-                                  width: "100%",
-                                  marginLeft: "7%",
-                                  paddingBottom: 20,
-                                  flexGrow: 1,
-                                }}
-                              >
-                                {ingredients.map((dt, id) => {
-                                  return (
-                                    <View
-                                      style={{ width: "100%", marginTop: -6 }}
-                                      key={dt}
+                              {ingredients.map((dt, id) => {
+                                return (
+                                  <View
+                                    style={{ width: "100%", marginTop: -6 }}
+                                    key={dt}
+                                  >
+                                    <TouchableOpacity
+                                      onPress={() => clickHandler(id)}
+                                      style={{
+                                        flexDirection: "row",
+                                        marginVertical: 9,
+                                        width: "83%",
+                                        justifyContent: "space-between",
+                                        backgroundColor: "#fff",
+                                        elevation: 5,
+                                        paddingVertical: 12,
+                                        paddingHorizontal: 10,
+                                        borderRadius: 15,
+                                      }}
                                     >
-                                      <TouchableOpacity
-                                        onPress={() => clickHandler(id)}
+                                      <Text>{dt}</Text>
+                                    </TouchableOpacity>
+                                    {index == id && (
+                                      <View
                                         style={{
-                                          flexDirection: "row",
-                                          marginVertical: 9,
-                                          width: "83%",
-                                          justifyContent: "space-between",
-                                          backgroundColor: "#fff",
-                                          elevation: 5,
-                                          paddingVertical: 12,
-                                          paddingHorizontal: 10,
-                                          borderRadius: 15,
+                                          width: "100%",
+                                          height: 120,
+                                          marginLeft: -10,
+                                          marginTop: -7,
+                                          marginBottom: 9,
                                         }}
                                       >
-                                        <Text>{dt}</Text>
-                                      </TouchableOpacity>
-                                      {index == id && (
-                                        <View
-                                          style={{
-                                            width: "100%",
-                                            height: 120,
-                                            marginLeft: -10,
-                                            marginTop: -7,
-                                            marginBottom: 9,
-                                          }}
-                                        >
-                                          <View style={{ width: "100%" }}>
-                                            <Text
-                                              style={{
-                                                textAlign: "left",
-                                                paddingLeft: "10%",
-                                                marginBottom: -12,
-                                                color: "rgba(0,0,0,0.6)",
-                                              }}
-                                            >
-                                              carbs
-                                            </Text>
+                                        <View style={{ width: "100%" }}>
+                                          <Text
+                                            style={{
+                                              textAlign: "left",
+                                              paddingLeft: "10%",
+                                              marginBottom: -12,
+                                              color: "rgba(0,0,0,0.6)",
+                                            }}
+                                          >
+                                            carbs
+                                          </Text>
+                                          <View
+                                            style={{
+                                              width: "90%",
+                                              alignItems: "center",
+                                              marginTop: -2,
+                                            }}
+                                          >
                                             <View
                                               style={{
-                                                width: "90%",
+                                                width: "80%",
                                                 alignItems: "center",
-                                                marginTop: -2,
+                                                marginTop: 15,
+                                                position: "relative",
                                               }}
                                             >
                                               <View
                                                 style={{
-                                                  width: "80%",
-                                                  alignItems: "center",
-                                                  marginTop: 15,
-                                                  position: "relative",
+                                                  height: 15,
+                                                  backgroundColor: "#E6E7E8",
+                                                  width: "100%",
+                                                  borderRadius: 50,
                                                 }}
-                                              >
-                                                <View
-                                                  style={{
-                                                    height: 15,
-                                                    backgroundColor: "#E6E7E8",
-                                                    width: "100%",
-                                                    borderRadius: 50,
-                                                  }}
-                                                ></View>
-                                                <View
-                                                  style={{
-                                                    position: "absolute",
-                                                    top: 0,
-                                                    height: "100%",
-                                                    width: "60%",
-                                                    borderRadius: 30,
-                                                    backgroundColor:
-                                                      colors[1].main,
-                                                    left: 0,
-                                                    zIndex: 3,
-                                                  }}
-                                                ></View>
-                                                <Text
-                                                  style={{
-                                                    position: "absolute",
-                                                    top: -5,
-                                                    height: 27,
-                                                    width: 43,
-                                                    borderRadius: 12,
-                                                    backgroundColor:
-                                                      colors[1].sideBox,
-                                                    color: "#fff",
-                                                    left: "55%",
-                                                    zIndex: 3,
-                                                    textAlign: "center",
-                                                    textAlignVertical: "center",
-                                                    fontSize: 12,
-                                                  }}
-                                                >
-                                                  60%
-                                                </Text>
-                                              </View>
-                                            </View>
-                                          </View>
-                                          <View style={{ width: "100%" }}>
-                                            <Text
-                                              style={{
-                                                textAlign: "left",
-                                                paddingLeft: "10%",
-                                                marginBottom: -12,
-                                                color: "rgba(0,0,0,0.6)",
-                                              }}
-                                            >
-                                              proteins
-                                            </Text>
-                                            <View
-                                              style={{
-                                                width: "90%",
-                                                alignItems: "center",
-                                                marginTop: -2,
-                                              }}
-                                            >
+                                              ></View>
                                               <View
                                                 style={{
-                                                  width: "80%",
-                                                  alignItems: "center",
-                                                  marginTop: 15,
-                                                  position: "relative",
+                                                  position: "absolute",
+                                                  top: 0,
+                                                  height: "100%",
+                                                  width: "60%",
+                                                  borderRadius: 30,
+                                                  backgroundColor:
+                                                    colors[1].main,
+                                                  left: 0,
+                                                  zIndex: 3,
                                                 }}
-                                              >
-                                                <View
-                                                  style={{
-                                                    height: 15,
-                                                    backgroundColor: "#E6E7E8",
-                                                    width: "100%",
-                                                    borderRadius: 50,
-                                                  }}
-                                                ></View>
-                                                <View
-                                                  style={{
-                                                    position: "absolute",
-                                                    top: 0,
-                                                    height: "100%",
-                                                    width: "35%",
-                                                    borderRadius: 30,
-                                                    backgroundColor:
-                                                      colors[2].main,
-                                                    left: 0,
-                                                    zIndex: 3,
-                                                  }}
-                                                ></View>
-                                                <Text
-                                                  style={{
-                                                    position: "absolute",
-                                                    top: -5,
-                                                    height: 27,
-                                                    width: 43,
-                                                    borderRadius: 12,
-                                                    backgroundColor:
-                                                      colors[2].sideBox,
-                                                    color: "#fff",
-                                                    left: "30%",
-                                                    zIndex: 3,
-                                                    textAlign: "center",
-                                                    textAlignVertical: "center",
-                                                    fontSize: 12,
-                                                  }}
-                                                >
-                                                  35%
-                                                </Text>
-                                              </View>
-                                            </View>
-                                          </View>
-                                          <View style={{ width: "100%" }}>
-                                            <Text
-                                              style={{
-                                                textAlign: "left",
-                                                paddingLeft: "10%",
-                                                marginBottom: -12,
-                                                color: "rgba(0,0,0,0.6)",
-                                              }}
-                                            >
-                                              fats
-                                            </Text>
-                                            <View
-                                              style={{
-                                                width: "90%",
-                                                alignItems: "center",
-                                                marginTop: -2,
-                                              }}
-                                            >
-                                              <View
+                                              ></View>
+                                              <Text
                                                 style={{
-                                                  width: "80%",
-                                                  alignItems: "center",
-                                                  marginTop: 15,
-                                                  position: "relative",
+                                                  position: "absolute",
+                                                  top: -5,
+                                                  height: 27,
+                                                  width: 43,
+                                                  borderRadius: 12,
+                                                  backgroundColor:
+                                                    colors[1].sideBox,
+                                                  color: "#fff",
+                                                  left: "55%",
+                                                  zIndex: 3,
+                                                  textAlign: "center",
+                                                  textAlignVertical: "center",
+                                                  fontSize: 12,
                                                 }}
                                               >
-                                                <View
-                                                  style={{
-                                                    height: 15,
-                                                    backgroundColor: "#E6E7E8",
-                                                    width: "100%",
-                                                    borderRadius: 50,
-                                                  }}
-                                                ></View>
-                                                <View
-                                                  style={{
-                                                    position: "absolute",
-                                                    top: 0,
-                                                    height: "100%",
-                                                    width: "80%",
-                                                    borderRadius: 30,
-                                                    backgroundColor:
-                                                      colors[0].main,
-                                                    left: 0,
-                                                    zIndex: 3,
-                                                  }}
-                                                ></View>
-                                                <Text
-                                                  style={{
-                                                    position: "absolute",
-                                                    top: -5,
-                                                    height: 27,
-                                                    width: 43,
-                                                    borderRadius: 12,
-                                                    backgroundColor:
-                                                      colors[0].sideBox,
-                                                    color: "#fff",
-                                                    left: "75%",
-                                                    zIndex: 3,
-                                                    textAlign: "center",
-                                                    textAlignVertical: "center",
-                                                    fontSize: 12,
-                                                  }}
-                                                >
-                                                  80%
-                                                </Text>
-                                              </View>
+                                                60%
+                                              </Text>
                                             </View>
                                           </View>
                                         </View>
-                                      )}
-                                    </View>
-                                  );
-                                })}
-                              </View>
-                            </ScrollView>
-                          )}
-                        </View>
+                                        <View style={{ width: "100%" }}>
+                                          <Text
+                                            style={{
+                                              textAlign: "left",
+                                              paddingLeft: "10%",
+                                              marginBottom: -12,
+                                              color: "rgba(0,0,0,0.6)",
+                                            }}
+                                          >
+                                            proteins
+                                          </Text>
+                                          <View
+                                            style={{
+                                              width: "90%",
+                                              alignItems: "center",
+                                              marginTop: -2,
+                                            }}
+                                          >
+                                            <View
+                                              style={{
+                                                width: "80%",
+                                                alignItems: "center",
+                                                marginTop: 15,
+                                                position: "relative",
+                                              }}
+                                            >
+                                              <View
+                                                style={{
+                                                  height: 15,
+                                                  backgroundColor: "#E6E7E8",
+                                                  width: "100%",
+                                                  borderRadius: 50,
+                                                }}
+                                              ></View>
+                                              <View
+                                                style={{
+                                                  position: "absolute",
+                                                  top: 0,
+                                                  height: "100%",
+                                                  width: "35%",
+                                                  borderRadius: 30,
+                                                  backgroundColor:
+                                                    colors[2].main,
+                                                  left: 0,
+                                                  zIndex: 3,
+                                                }}
+                                              ></View>
+                                              <Text
+                                                style={{
+                                                  position: "absolute",
+                                                  top: -5,
+                                                  height: 27,
+                                                  width: 43,
+                                                  borderRadius: 12,
+                                                  backgroundColor:
+                                                    colors[2].sideBox,
+                                                  color: "#fff",
+                                                  left: "30%",
+                                                  zIndex: 3,
+                                                  textAlign: "center",
+                                                  textAlignVertical: "center",
+                                                  fontSize: 12,
+                                                }}
+                                              >
+                                                35%
+                                              </Text>
+                                            </View>
+                                          </View>
+                                        </View>
+                                        <View style={{ width: "100%" }}>
+                                          <Text
+                                            style={{
+                                              textAlign: "left",
+                                              paddingLeft: "10%",
+                                              marginBottom: -12,
+                                              color: "rgba(0,0,0,0.6)",
+                                            }}
+                                          >
+                                            fats
+                                          </Text>
+                                          <View
+                                            style={{
+                                              width: "90%",
+                                              alignItems: "center",
+                                              marginTop: -2,
+                                            }}
+                                          >
+                                            <View
+                                              style={{
+                                                width: "80%",
+                                                alignItems: "center",
+                                                marginTop: 15,
+                                                position: "relative",
+                                              }}
+                                            >
+                                              <View
+                                                style={{
+                                                  height: 15,
+                                                  backgroundColor: "#E6E7E8",
+                                                  width: "100%",
+                                                  borderRadius: 50,
+                                                }}
+                                              ></View>
+                                              <View
+                                                style={{
+                                                  position: "absolute",
+                                                  top: 0,
+                                                  height: "100%",
+                                                  width: "80%",
+                                                  borderRadius: 30,
+                                                  backgroundColor:
+                                                    colors[0].main,
+                                                  left: 0,
+                                                  zIndex: 3,
+                                                }}
+                                              ></View>
+                                              <Text
+                                                style={{
+                                                  position: "absolute",
+                                                  top: -5,
+                                                  height: 27,
+                                                  width: 43,
+                                                  borderRadius: 12,
+                                                  backgroundColor:
+                                                    colors[0].sideBox,
+                                                  color: "#fff",
+                                                  left: "75%",
+                                                  zIndex: 3,
+                                                  textAlign: "center",
+                                                  textAlignVertical: "center",
+                                                  fontSize: 12,
+                                                }}
+                                              >
+                                                80%
+                                              </Text>
+                                            </View>
+                                          </View>
+                                        </View>
+                                      </View>
+                                    )}
+                                  </View>
+                                );
+                              })}
+                            </View>
+                          </ScrollView>
+                        )}
                       </View>
                     </View>
-                  </ImageBackground>
-                </View>
+                  </View>
+                </OuterContainer>
               </View>
             </View>
             <View style={{ width: "100%", height: 250 }}>
@@ -703,8 +691,8 @@ export default function ImageScreen(props) {
             </View>
           </View>
         </ScrollView>
-        <View
-          style={{
+        <OuterContainer
+          styles={{
             ...globalStyles.outerContainer,
             width: "94%",
             marginHorizontal: "3%",
@@ -715,35 +703,30 @@ export default function ImageScreen(props) {
             left: 0,
           }}
         >
-          <ImageBackground
-            source={meshBg}
-            style={globalStyles.imageBackgroundInner}
+          <View
+            style={{
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "space-around",
+              flexDirection: "row",
+            }}
           >
             <View
               style={{
-                width: "100%",
-                alignItems: "center",
-                justifyContent: "space-around",
                 flexDirection: "row",
+                justifyContent: "space-between",
+                width: "75%",
               }}
             >
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  width: "75%",
-                }}
-              >
-                <Text style={{ fontWeight: "bold", color: "rgba(0,0,0,0.6)" }}>
-                  Total Energy
-                </Text>
-                <Text style={{ fontWeight: "bold" }}>
-                  {mealSelected.calories} calories
-                </Text>
-              </View>
+              <Text style={{ fontWeight: "bold", color: "rgba(0,0,0,0.6)" }}>
+                Total Energy
+              </Text>
+              <Text style={{ fontWeight: "bold" }}>
+                {mealSelected.calories} calories
+              </Text>
             </View>
-          </ImageBackground>
-        </View>
+          </View>
+        </OuterContainer>
       </View>
     </View>
   );

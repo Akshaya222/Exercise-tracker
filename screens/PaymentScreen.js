@@ -23,6 +23,7 @@ import { fetchPayment, fetchPricingPlans } from "../store/actions/payment";
 import { useDispatch, useSelector } from "react-redux";
 import { api } from "../store/api";
 import { fetchUser } from "../store/actions/auth";
+import OuterContainer from "../components/OuterContainer";
 
 const Payment = (props) => {
   const dispatch = useDispatch();
@@ -198,134 +199,125 @@ const Payment = (props) => {
                 Back
               </Text>
             </View>
-            <View
-              style={{
+            <OuterContainer
+              styles={{
                 ...globalStyles.outerContainer,
                 width: "90%",
                 height: "78%",
               }}
             >
-              <ImageBackground
-                source={meshBg}
-                style={globalStyles.imageBackgroundInner}
+              <View
+                style={{
+                  width: "100%",
+                  //alignItems: "center",
+                  padding: 15,
+                  paddingHorizontal: "9%",
+                  height: "100%",
+                  backgroundColor: "rgba(255, 255, 255, 0.5)",
+                  //justifyContent: "center",
+                }}
               >
-                <View
+                <Text
                   style={{
-                    width: "100%",
-                    //alignItems: "center",
-                    padding: 15,
-                    paddingHorizontal: "9%",
-                    height: "100%",
-                    backgroundColor: "rgba(255, 255, 255, 0.5)",
-                    //justifyContent: "center",
+                    textAlign: "center",
+                    fontSize: 24,
+                    fontWeight: "bold",
+                    marginVertical: 5,
                   }}
                 >
-                  <Text
+                  {pytdetails.pricingPlan.name}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                  Amount paid :{" "}
+                  <Text style={{ fontSize: 18 }}>
+                    {pytdetails.payment.amount}
+                  </Text>{" "}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                  About Plan :{" "}
+                  <Text style={{ textAlign: "justify", fontWeight: "normal" }}>
+                    {pytdetails.pricingPlan.description}
+                  </Text>
+                </Text>
+                <Text style={{ fontWeight: "bold", marginBottom: 5 }}>
+                  Benefits :{" "}
+                </Text>
+                {pytdetails.pricingPlan.benefits.map((benefit) => {
+                  return (
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                      key={benefit}
+                    >
+                      <AntDesign
+                        style={{ marginRight: 10 }}
+                        name="star"
+                        size={12}
+                        color="black"
+                      />
+                      <Text>{benefit}</Text>
+                    </View>
+                  );
+                })}
+                <Text style={{ marginTop: 5, fontWeight: "bold" }}>
+                  Payment Method:{" "}
+                  <Text style={{ fontWeight: "normal" }}>
+                    {" "}
+                    {pytdetails.payment.paymentMethod}
+                  </Text>{" "}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                  Registered On :{" "}
+                  <Text style={{ fontWeight: "normal" }}>{`${new Date(
+                    pytdetails.payment.date
+                  ).getDate()}/${
+                    new Date(pytdetails.payment.date).getMonth() + 1
+                  }/${new Date(
+                    pytdetails.payment.date
+                  ).getFullYear()}`}</Text>{" "}
+                </Text>
+                <Text style={{ fontWeight: "bold", marginTop: 6 }}>
+                  Plan expires in :{" "}
+                </Text>
+                <View style={{ marginTop: 20 }}>
+                  <CountDown
+                    digitStyle={{ backgroundColor: "pink" }}
+                    digitTxtStyle={{ color: "#fff" }}
+                    until={
+                      (new Date(pytdetails.pricingPlan.expiryDate) -
+                        new Date()) /
+                      1000
+                    }
+                    onFinish={() => {
+                      alert("finished");
+                      setIsExpired(true);
+                    }}
+                    size={22}
+                  />
+                </View>
+                {isExpired ? (
+                  <View
                     style={{
-                      textAlign: "center",
-                      fontSize: 24,
-                      fontWeight: "bold",
-                      marginVertical: 5,
+                      width: "100%",
+                      alignItems: "center",
+                      marginTop: 20,
                     }}
                   >
-                    {pytdetails.pricingPlan.name}
-                  </Text>
-                  <Text style={{ fontWeight: "bold" }}>
-                    Amount paid :{" "}
-                    <Text style={{ fontSize: 18 }}>
-                      {pytdetails.payment.amount}
-                    </Text>{" "}
-                  </Text>
-                  <Text style={{ fontWeight: "bold" }}>
-                    About Plan :{" "}
-                    <Text
-                      style={{ textAlign: "justify", fontWeight: "normal" }}
-                    >
-                      {pytdetails.pricingPlan.description}
-                    </Text>
-                  </Text>
-                  <Text style={{ fontWeight: "bold", marginBottom: 5 }}>
-                    Benefits :{" "}
-                  </Text>
-                  {pytdetails.pricingPlan.benefits.map((benefit) => {
-                    return (
-                      <View
-                        style={{ flexDirection: "row", alignItems: "center" }}
-                        key={benefit}
-                      >
-                        <AntDesign
-                          style={{ marginRight: 10 }}
-                          name="star"
-                          size={12}
-                          color="black"
-                        />
-                        <Text>{benefit}</Text>
-                      </View>
-                    );
-                  })}
-                  <Text style={{ marginTop: 5, fontWeight: "bold" }}>
-                    Payment Method:{" "}
-                    <Text style={{ fontWeight: "normal" }}>
-                      {" "}
-                      {pytdetails.payment.paymentMethod}
-                    </Text>{" "}
-                  </Text>
-                  <Text style={{ fontWeight: "bold" }}>
-                    Registered On :{" "}
-                    <Text style={{ fontWeight: "normal" }}>{`${new Date(
-                      pytdetails.payment.date
-                    ).getDate()}/${
-                      new Date(pytdetails.payment.date).getMonth() + 1
-                    }/${new Date(
-                      pytdetails.payment.date
-                    ).getFullYear()}`}</Text>{" "}
-                  </Text>
-                  <Text style={{ fontWeight: "bold", marginTop: 6 }}>
-                    Plan expires in :{" "}
-                  </Text>
-                  <View style={{ marginTop: 20 }}>
-                    <CountDown
-                      digitStyle={{ backgroundColor: "pink" }}
-                      digitTxtStyle={{ color: "#fff" }}
-                      until={
-                        (new Date(pytdetails.pricingPlan.expiryDate) -
-                          new Date()) /
-                        1000
-                      }
-                      onFinish={() => {
-                        alert("finished");
-                        setIsExpired(true);
-                      }}
-                      size={22}
-                    />
-                  </View>
-                  {isExpired ? (
-                    <View
+                    <TouchableOpacity
+                      onPress={() => setIsPaid(false)}
                       style={{
-                        width: "100%",
-                        alignItems: "center",
-                        marginTop: 20,
+                        ...styles.uploadButton,
+                        width: 200,
+                        ...globalStyles.buttonStyles,
                       }}
                     >
-                      <TouchableOpacity
-                        onPress={() => setIsPaid(false)}
-                        style={{
-                          ...styles.uploadButton,
-                          width: 200,
-                          ...globalStyles.buttonStyles,
-                        }}
-                      >
-                        <Text
-                          style={{ fontWeight: "bold", textAlign: "center" }}
-                        >
-                          Take Subscription
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
-                  ) : null}
-                </View>
-              </ImageBackground>
-            </View>
+                      <Text style={{ fontWeight: "bold", textAlign: "center" }}>
+                        Take Subscription
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                ) : null}
+              </View>
+            </OuterContainer>
           </View>
         </View>
       );
@@ -375,84 +367,67 @@ const Payment = (props) => {
                   renderItem={({ item, index }) => {
                     return (
                       <View style={{ width: "100%", alignItems: "center" }}>
-                        <View
-                          style={{
+                        <OuterContainer
+                          styles={{
                             ...globalStyles.outerContainer,
                             width: "85%",
                             marginBottom: 20,
                           }}
                         >
-                          <ImageBackground
-                            source={meshBg}
-                            style={globalStyles.imageBackgroundInner}
+                          <View
+                            style={{
+                              width: "100%",
+                              //alignItems: "center",
+                              padding: 15,
+                              height: "100%",
+                              backgroundColor: "rgba(255, 255, 255, 0.5)",
+                              //justifyContent: "center",
+                            }}
                           >
-                            <View
+                            <Text
                               style={{
-                                width: "100%",
-                                //alignItems: "center",
-                                padding: 15,
-                                height: "100%",
-                                backgroundColor: "rgba(255, 255, 255, 0.5)",
-                                //justifyContent: "center",
+                                textAlign: "left",
+                                marginLeft: 15,
+                                fontWeight: "bold",
+                                fontSize: 17,
                               }}
                             >
-                              <Text
+                              {item.name}
+                            </Text>
+                            <Text
+                              style={{
+                                textAlign: "left",
+                                marginLeft: 15,
+                                fontWeight: "bold",
+                                fontSize: 13,
+                                marginVertical: 3,
+                              }}
+                            >
+                              {item.description}
+                            </Text>
+                            {index + 1 == value && newAmount ? (
+                              <View
                                 style={{
-                                  textAlign: "left",
-                                  marginLeft: 15,
-                                  fontWeight: "bold",
-                                  fontSize: 17,
+                                  flexDirection: "row",
+                                  justifyContent: "space-around",
+                                  paddingHorizontal: 35,
+                                  alignItems: "center",
                                 }}
                               >
-                                {item.name}
-                              </Text>
-                              <Text
-                                style={{
-                                  textAlign: "left",
-                                  marginLeft: 15,
-                                  fontWeight: "bold",
-                                  fontSize: 13,
-                                  marginVertical: 3,
-                                }}
-                              >
-                                {item.description}
-                              </Text>
-                              {index + 1 == value && newAmount ? (
-                                <View
+                                <Text
                                   style={{
-                                    flexDirection: "row",
-                                    justifyContent: "space-around",
-                                    paddingHorizontal: 35,
-                                    alignItems: "center",
+                                    textAlign: "center",
+                                    marginLeft: 15,
+                                    fontWeight: "bold",
+                                    fontSize: 18,
+                                    marginTop: 12,
+                                    fontStyle: "italic",
+                                    textDecorationLine: "line-through",
+                                    textDecorationStyle: "solid",
                                   }}
                                 >
-                                  <Text
-                                    style={{
-                                      textAlign: "center",
-                                      marginLeft: 15,
-                                      fontWeight: "bold",
-                                      fontSize: 18,
-                                      marginTop: 12,
-                                      fontStyle: "italic",
-                                      textDecorationLine: "line-through",
-                                      textDecorationStyle: "solid",
-                                    }}
-                                  >
-                                    {item.price}/-
-                                  </Text>
-                                  <Text
-                                    style={{
-                                      textAlign: "center",
-                                      marginLeft: 15,
-                                      fontWeight: "bold",
-                                      fontSize: 30,
-                                      marginTop: 12,
-                                    }}
-                                  >
-                                    {newAmount}/-
-                                  </Text>
-                                </View>
-                              ) : (
+                                  {item.price}/-
+                                </Text>
                                 <Text
                                   style={{
                                     textAlign: "center",
@@ -460,212 +435,224 @@ const Payment = (props) => {
                                     fontWeight: "bold",
                                     fontSize: 30,
                                     marginTop: 12,
-                                    fontStyle: "italic",
                                   }}
                                 >
-                                  {item.price}/-
+                                  {newAmount}/-
                                 </Text>
-                              )}
+                              </View>
+                            ) : (
                               <Text
                                 style={{
-                                  marginLeft: 20,
-                                  fontSize: 14,
-                                  marginBottom: 5,
+                                  textAlign: "center",
+                                  marginLeft: 15,
+                                  fontWeight: "bold",
+                                  fontSize: 30,
+                                  marginTop: 12,
+                                  fontStyle: "italic",
                                 }}
                               >
-                                Benefits
+                                {item.price}/-
                               </Text>
-                              <ScrollView>
-                                {item.benefits.length == 0 ? (
-                                  <Text
-                                    style={{
-                                      fontSize: 16,
-                                      color: "rgba(0,0,0,0.5)",
-                                      fontWeight: "bold",
-                                    }}
-                                  >
-                                    Added benefits{" "}
-                                  </Text>
-                                ) : (
-                                  <View>
-                                    {item.benefits.map((bene) => {
-                                      return (
-                                        <View
+                            )}
+                            <Text
+                              style={{
+                                marginLeft: 20,
+                                fontSize: 14,
+                                marginBottom: 5,
+                              }}
+                            >
+                              Benefits
+                            </Text>
+                            <ScrollView>
+                              {item.benefits.length == 0 ? (
+                                <Text
+                                  style={{
+                                    fontSize: 16,
+                                    color: "rgba(0,0,0,0.5)",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  Added benefits{" "}
+                                </Text>
+                              ) : (
+                                <View>
+                                  {item.benefits.map((bene) => {
+                                    return (
+                                      <View
+                                        style={{
+                                          flexDirection: "row",
+                                          alignItems: "center",
+                                          marginLeft: 12,
+                                        }}
+                                        key={bene}
+                                      >
+                                        <AntDesign
+                                          style={{ marginRight: 10 }}
+                                          name="star"
+                                          size={12}
+                                          color="black"
+                                        />
+                                        <Text
                                           style={{
-                                            flexDirection: "row",
-                                            alignItems: "center",
-                                            marginLeft: 12,
+                                            marginVertical: 2,
+                                            fontWeight: "bold",
+                                            color: "rgba(0,0,0,0.6)",
                                           }}
                                           key={bene}
                                         >
-                                          <AntDesign
-                                            style={{ marginRight: 10 }}
-                                            name="star"
-                                            size={12}
-                                            color="black"
-                                          />
-                                          <Text
-                                            style={{
-                                              marginVertical: 2,
-                                              fontWeight: "bold",
-                                              color: "rgba(0,0,0,0.6)",
-                                            }}
-                                            key={bene}
-                                          >
-                                            {bene}
-                                          </Text>
-                                        </View>
-                                      );
-                                    })}
-                                  </View>
-                                )}
-                              </ScrollView>
-                              <Text
-                                style={{ fontWeight: "bold", marginLeft: 12 }}
-                              >
-                                Expires On :{" "}
-                                <Text
-                                  style={{
-                                    fontWeight: "bold",
-                                    color: "rgba(0,0,0,0.6)",
-                                  }}
-                                >{`${new Date(item.expiryDate).getDate()}/${
-                                  new Date(item.expiryDate).getMonth() + 1
-                                }/${new Date(
-                                  item.expiryDate
-                                ).getFullYear()}`}</Text>{" "}
-                              </Text>
-                              <Text
-                                style={{
-                                  textAlign: "center",
-                                  fontWeight: "bold",
-                                  color: "rgba(0,0,0,0.8)",
-                                  fontSize: 13,
-                                  marginVertical: 4,
-                                }}
-                                onPress={() => couponHandler(index)}
-                              >
-                                Have a Coupon Code ?{" "}
-                              </Text>
-                              {value == index + 1 && useCoupons ? (
-                                <View>
-                                  <View
-                                    style={{
-                                      flexDirection: "row",
-                                      alignItems: "center",
-                                      justifyContent: "center",
-                                      width: "100%",
-                                    }}
-                                  >
-                                    <View
-                                      style={{
-                                        ...styles.inputContainer,
-                                        width: 150,
-                                      }}
-                                    >
-                                      <TextInput
-                                        placeholder="coupon code"
-                                        value={couponCode}
-                                        onChangeText={(e) => setCouponCode(e)}
-                                        style={{ fontWeight: "bold" }}
-                                      />
-                                    </View>
-                                    <TouchableOpacity
-                                      onPress={() => applyCouponCode(item._id)}
-                                      style={{
-                                        paddingHorizontal: 10,
-                                        backgroundColor: "rgba(242,145,152,1)",
-                                        paddingVertical: 6,
-                                        borderWidth: 1,
-                                        borderLeftWidth: 0,
-                                        borderColor: "rgba(0,0,0,0.3)",
-                                      }}
-                                    >
-                                      <Text>Apply</Text>
-                                    </TouchableOpacity>
-                                  </View>
-                                  {index + 1 == value && newAmount ? (
-                                    <Text
-                                      style={{
-                                        color: "green",
-                                        textAlign: "center",
-                                        fontStyle: "italic",
-                                        fontWeight: "bold",
-                                      }}
-                                    >
-                                      Code {couponCode} applied
-                                    </Text>
-                                  ) : (
-                                    <Text
-                                      style={{
-                                        textAlign: "center",
-                                        marginTop: -5,
-                                      }}
-                                      onPress={() => {
-                                        setValue(0);
-                                        setCouponCode("");
-                                        setUseCoupons(false);
-                                      }}
-                                    >
-                                      Cancel
-                                    </Text>
-                                  )}
+                                          {bene}
+                                        </Text>
+                                      </View>
+                                    );
+                                  })}
                                 </View>
-                              ) : null}
-                              <Text style={{ textAlign: "center" }}>Or</Text>
+                              )}
+                            </ScrollView>
+                            <Text
+                              style={{ fontWeight: "bold", marginLeft: 12 }}
+                            >
+                              Expires On :{" "}
                               <Text
                                 style={{
-                                  textAlign: "center",
                                   fontWeight: "bold",
+                                  color: "rgba(0,0,0,0.6)",
                                 }}
-                                onPress={() => coinsHandler(item._id, index)}
-                              >
-                                {" "}
-                                Use coins in payment ?{" "}
-                              </Text>
-                              <View
-                                style={{
-                                  flexDirection: "row",
-                                  justifyContent: "center",
-                                  width: "100%",
-                                  marginTop: 4,
-                                  borderRadius: 30,
-                                  overflow: "hidden",
-                                  marginBottom: 6,
-                                }}
-                              >
-                                <Text
+                              >{`${new Date(item.expiryDate).getDate()}/${
+                                new Date(item.expiryDate).getMonth() + 1
+                              }/${new Date(
+                                item.expiryDate
+                              ).getFullYear()}`}</Text>{" "}
+                            </Text>
+                            <Text
+                              style={{
+                                textAlign: "center",
+                                fontWeight: "bold",
+                                color: "rgba(0,0,0,0.8)",
+                                fontSize: 13,
+                                marginVertical: 4,
+                              }}
+                              onPress={() => couponHandler(index)}
+                            >
+                              Have a Coupon Code ?{" "}
+                            </Text>
+                            {value == index + 1 && useCoupons ? (
+                              <View>
+                                <View
                                   style={{
-                                    fontWeight: "bold",
-                                    fontSize: 17,
-                                    marginTop: 4,
-                                    width: 150,
-                                    backgroundColor: "rgba(242,145,152,1)",
-                                    borderRadius: 30,
-                                    textAlign: "center",
-                                    paddingVertical: 5,
-                                    textAlignVertical: "center",
-                                  }}
-                                  onPress={() => {
-                                    activatePlan(item._id);
-                                    setPricingPlanId(item._id);
-                                    setCartInfo({
-                                      ...cartInfo,
-                                      description: item.name,
-                                      amount:
-                                        index + 1 == value && newAmount
-                                          ? newAmount
-                                          : item.price,
-                                    });
-                                    setMakePayment(true);
+                                    flexDirection: "row",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    width: "100%",
                                   }}
                                 >
-                                  Proceed
-                                </Text>
+                                  <View
+                                    style={{
+                                      ...styles.inputContainer,
+                                      width: 150,
+                                    }}
+                                  >
+                                    <TextInput
+                                      placeholder="coupon code"
+                                      value={couponCode}
+                                      onChangeText={(e) => setCouponCode(e)}
+                                      style={{ fontWeight: "bold" }}
+                                    />
+                                  </View>
+                                  <TouchableOpacity
+                                    onPress={() => applyCouponCode(item._id)}
+                                    style={{
+                                      paddingHorizontal: 10,
+                                      backgroundColor: "rgba(242,145,152,1)",
+                                      paddingVertical: 6,
+                                      borderWidth: 1,
+                                      borderLeftWidth: 0,
+                                      borderColor: "rgba(0,0,0,0.3)",
+                                    }}
+                                  >
+                                    <Text>Apply</Text>
+                                  </TouchableOpacity>
+                                </View>
+                                {index + 1 == value && newAmount ? (
+                                  <Text
+                                    style={{
+                                      color: "green",
+                                      textAlign: "center",
+                                      fontStyle: "italic",
+                                      fontWeight: "bold",
+                                    }}
+                                  >
+                                    Code {couponCode} applied
+                                  </Text>
+                                ) : (
+                                  <Text
+                                    style={{
+                                      textAlign: "center",
+                                      marginTop: -5,
+                                    }}
+                                    onPress={() => {
+                                      setValue(0);
+                                      setCouponCode("");
+                                      setUseCoupons(false);
+                                    }}
+                                  >
+                                    Cancel
+                                  </Text>
+                                )}
                               </View>
+                            ) : null}
+                            <Text style={{ textAlign: "center" }}>Or</Text>
+                            <Text
+                              style={{
+                                textAlign: "center",
+                                fontWeight: "bold",
+                              }}
+                              onPress={() => coinsHandler(item._id, index)}
+                            >
+                              {" "}
+                              Use coins in payment ?{" "}
+                            </Text>
+                            <View
+                              style={{
+                                flexDirection: "row",
+                                justifyContent: "center",
+                                width: "100%",
+                                marginTop: 4,
+                                borderRadius: 30,
+                                overflow: "hidden",
+                                marginBottom: 6,
+                              }}
+                            >
+                              <Text
+                                style={{
+                                  fontWeight: "bold",
+                                  fontSize: 17,
+                                  marginTop: 4,
+                                  width: 150,
+                                  backgroundColor: "rgba(242,145,152,1)",
+                                  borderRadius: 30,
+                                  textAlign: "center",
+                                  paddingVertical: 5,
+                                  textAlignVertical: "center",
+                                }}
+                                onPress={() => {
+                                  activatePlan(item._id);
+                                  setPricingPlanId(item._id);
+                                  setCartInfo({
+                                    ...cartInfo,
+                                    description: item.name,
+                                    amount:
+                                      index + 1 == value && newAmount
+                                        ? newAmount
+                                        : item.price,
+                                  });
+                                  setMakePayment(true);
+                                }}
+                              >
+                                Proceed
+                              </Text>
                             </View>
-                          </ImageBackground>
-                        </View>
+                          </View>
+                        </OuterContainer>
                       </View>
                     );
                   }}

@@ -24,6 +24,7 @@ import { api } from "../store/api";
 import { globalStyles } from "../styles/GlobalStyles";
 import loadingSpinner from "../assets/loading-new.gif";
 import axios from "axios";
+import OuterContainer from "../components/OuterContainer";
 
 export default function ImageScreen(props) {
   const dispatch = useDispatch();
@@ -283,59 +284,54 @@ export default function ImageScreen(props) {
                 </Text>
               </TouchableOpacity>
             </View>
-            <View
-              style={{
+            <OuterContainer
+              styles={{
                 ...globalStyles.outerContainer,
                 width: "85%",
                 height: 270,
               }}
             >
-              <ImageBackground
-                source={meshBg}
-                style={globalStyles.imageBackgroundInner}
-              >
-                <View style={globalStyles.innerContainer}>
-                  {message ? (
-                    <Text style={{ color: "black", marginHorizontal: 30 }}>
-                      Free limits exceeded.
-                      <Text style={{ fontWeight: "bold" }}>
-                        Please updrage plan
-                      </Text>{" "}
-                      <Text
-                        style={{
-                          fontWeight: "bold",
-                          textAlign: "center",
-                          fontSize: 16,
-                          textDecorationLine: "underline",
-                        }}
-                        onPress={() => {
-                          props.navigation.navigate("paymentScreen");
-                        }}
-                      >
-                        View Plans
-                      </Text>{" "}
-                    </Text>
-                  ) : image ? (
-                    <Image
-                      source={{ uri: image }}
-                      resizeMode="cover"
-                      style={{ width: "100%", height: "100%" }}
-                    />
-                  ) : mealSelected?.url ? (
-                    <Image
-                      source={{ uri: selectedMeal.url }}
-                      resizeMode="cover"
-                      style={{ width: "100%", height: "100%" }}
-                    />
-                  ) : (
-                    <Text style={{ color: "black" }}>
-                      Image uploaded would be here
-                    </Text>
-                  )}
-                  {/* { image || mealSelected ? <Image source={{ uri: image || selectedMeal.url }} resizeMode="cover" style={{width:"100%",height:"100%"}} /> : <Text style={{color:"black"}}>Image uploaded would be here</Text>  } */}
-                </View>
-              </ImageBackground>
-            </View>
+              <View style={globalStyles.innerContainer}>
+                {message ? (
+                  <Text style={{ color: "black", marginHorizontal: 30 }}>
+                    Free limits exceeded.
+                    <Text style={{ fontWeight: "bold" }}>
+                      Please updrage plan
+                    </Text>{" "}
+                    <Text
+                      style={{
+                        fontWeight: "bold",
+                        textAlign: "center",
+                        fontSize: 16,
+                        textDecorationLine: "underline",
+                      }}
+                      onPress={() => {
+                        props.navigation.navigate("paymentScreen");
+                      }}
+                    >
+                      View Plans
+                    </Text>{" "}
+                  </Text>
+                ) : image ? (
+                  <Image
+                    source={{ uri: image }}
+                    resizeMode="cover"
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                ) : mealSelected?.url ? (
+                  <Image
+                    source={{ uri: selectedMeal.url }}
+                    resizeMode="cover"
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                ) : (
+                  <Text style={{ color: "black" }}>
+                    Image uploaded would be here
+                  </Text>
+                )}
+                {/* { image || mealSelected ? <Image source={{ uri: image || selectedMeal.url }} resizeMode="cover" style={{width:"100%",height:"100%"}} /> : <Text style={{color:"black"}}>Image uploaded would be here</Text>  } */}
+              </View>
+            </OuterContainer>
             <View
               style={{
                 width: "100%",
@@ -359,8 +355,8 @@ export default function ImageScreen(props) {
                         uploadImageForRecentMeal(images[images.length - 1]);
                       }}
                     >
-                      <View
-                        style={{
+                      <OuterContainer
+                        styles={{
                           ...globalStyles.outerContainer,
                           width: 110,
                           height: 110,
@@ -369,60 +365,48 @@ export default function ImageScreen(props) {
                           zIndex: 10,
                         }}
                       >
-                        <ImageBackground
-                          source={meshBg}
-                          style={globalStyles.imageBackgroundInner}
-                        >
-                          <View style={{ ...globalStyles.innerContainer }}>
-                            <Image
-                              source={{ uri: images[images.length - 1].url }}
-                              style={{ width: "100%", height: "100%" }}
-                            />
-                          </View>
-                        </ImageBackground>
-                      </View>
-                      <View
-                        style={{
+                        <View style={{ ...globalStyles.innerContainer }}>
+                          <Image
+                            source={{ uri: images[images.length - 1].url }}
+                            style={{ width: "100%", height: "100%" }}
+                          />
+                        </View>
+                      </OuterContainer>
+                      <OuterContainer
+                        styles={{
                           ...globalStyles.outerContainer,
                           width: 142,
                           height: "60%",
                           marginVertical: 0,
                         }}
                       >
-                        <ImageBackground
-                          source={meshBg}
-                          style={globalStyles.imageBackgroundInner}
+                        <View
+                          style={{
+                            ...globalStyles.innerContainer,
+                            padding: 20,
+                          }}
                         >
-                          <View
+                          <Text style={{ color: "black", fontWeight: "bold" }}>
+                            {images[images.length - 1].name}
+                          </Text>
+                          <Text
                             style={{
-                              ...globalStyles.innerContainer,
-                              padding: 20,
+                              color: "rgba(0,0,0,0.5)",
+                              fontWeight: "bold",
                             }}
                           >
-                            <Text
-                              style={{ color: "black", fontWeight: "bold" }}
-                            >
-                              {images[images.length - 1].name}
-                            </Text>
-                            <Text
-                              style={{
-                                color: "rgba(0,0,0,0.5)",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              {images[images.length - 1].calories} cal
-                            </Text>
-                            {images[images.length - 1].isFavorite ? (
-                              <AntDesign
-                                name="heart"
-                                size={16}
-                                color="black"
-                                style={{ marginTop: 3 }}
-                              />
-                            ) : null}
-                          </View>
-                        </ImageBackground>
-                      </View>
+                            {images[images.length - 1].calories} cal
+                          </Text>
+                          {images[images.length - 1].isFavorite ? (
+                            <AntDesign
+                              name="heart"
+                              size={16}
+                              color="black"
+                              style={{ marginTop: 3 }}
+                            />
+                          ) : null}
+                        </View>
+                      </OuterContainer>
                     </TouchableOpacity>
                   ) : null}
                   {images[images.length - 2] ? (
@@ -432,8 +416,8 @@ export default function ImageScreen(props) {
                         uploadImageForRecentMeal(images[images.length - 2]);
                       }}
                     >
-                      <View
-                        style={{
+                      <OuterContainer
+                        styles={{
                           ...globalStyles.outerContainer,
                           width: 110,
                           height: 110,
@@ -442,60 +426,48 @@ export default function ImageScreen(props) {
                           zIndex: 10,
                         }}
                       >
-                        <ImageBackground
-                          source={meshBg}
-                          style={globalStyles.imageBackgroundInner}
-                        >
-                          <View style={{ ...globalStyles.innerContainer }}>
-                            <Image
-                              source={{ uri: images[images.length - 2].url }}
-                              style={{ width: "100%", height: "100%" }}
-                            />
-                          </View>
-                        </ImageBackground>
-                      </View>
-                      <View
-                        style={{
+                        <View style={{ ...globalStyles.innerContainer }}>
+                          <Image
+                            source={{ uri: images[images.length - 2].url }}
+                            style={{ width: "100%", height: "100%" }}
+                          />
+                        </View>
+                      </OuterContainer>
+                      <OuterContainer
+                        styles={{
                           ...globalStyles.outerContainer,
                           width: 142,
                           height: "60%",
                           marginVertical: 0,
                         }}
                       >
-                        <ImageBackground
-                          source={meshBg}
-                          style={globalStyles.imageBackgroundInner}
+                        <View
+                          style={{
+                            ...globalStyles.innerContainer,
+                            padding: 20,
+                          }}
                         >
-                          <View
+                          <Text style={{ color: "black", fontWeight: "bold" }}>
+                            {images[images.length - 2].name}
+                          </Text>
+                          <Text
                             style={{
-                              ...globalStyles.innerContainer,
-                              padding: 20,
+                              color: "rgba(0,0,0,0.5)",
+                              fontWeight: "bold",
                             }}
                           >
-                            <Text
-                              style={{ color: "black", fontWeight: "bold" }}
-                            >
-                              {images[images.length - 2].name}
-                            </Text>
-                            <Text
-                              style={{
-                                color: "rgba(0,0,0,0.5)",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              {images[images.length - 2].calories} cal
-                            </Text>
-                            {images[images.length - 2].isFavorite ? (
-                              <AntDesign
-                                name="heart"
-                                size={16}
-                                color="black"
-                                style={{ marginTop: 3 }}
-                              />
-                            ) : null}
-                          </View>
-                        </ImageBackground>
-                      </View>
+                            {images[images.length - 2].calories} cal
+                          </Text>
+                          {images[images.length - 2].isFavorite ? (
+                            <AntDesign
+                              name="heart"
+                              size={16}
+                              color="black"
+                              style={{ marginTop: 3 }}
+                            />
+                          ) : null}
+                        </View>
+                      </OuterContainer>
                     </TouchableOpacity>
                   ) : null}
                   <TouchableOpacity
@@ -576,8 +548,8 @@ export default function ImageScreen(props) {
               </View>
             </View>
             {showImage && (
-              <View
-                style={{
+              <OuterContainer
+                styles={{
                   ...globalStyles.outerContainer,
                   width: "100%",
                   height: 120,
@@ -590,71 +562,62 @@ export default function ImageScreen(props) {
                   left: 0,
                 }}
               >
-                <ImageBackground
-                  source={meshBg}
-                  style={globalStyles.imageBackgroundInner}
+                <View
+                  style={{
+                    width: "100%",
+                    alignItems: "center",
+                    justifyContent: "space-around",
+                    flexDirection: "row",
+                  }}
                 >
-                  <View
-                    style={{
-                      width: "100%",
-                      alignItems: "center",
-                      justifyContent: "space-around",
-                      flexDirection: "row",
-                    }}
+                  <TouchableOpacity
+                    onPress={clickImage}
+                    style={{ justifyContent: "center", alignItems: "center" }}
                   >
-                    <TouchableOpacity
-                      onPress={clickImage}
-                      style={{ justifyContent: "center", alignItems: "center" }}
-                    >
-                      <MaterialIcons
-                        name="camera-alt"
-                        color="black"
-                        size={30}
-                      />
-                      <Text style={{ fontSize: 12 }}>Camera</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      onPress={pickImage}
-                      style={{ justifyContent: "center", alignItems: "center" }}
-                    >
-                      <MaterialIcons
-                        name="drive-folder-upload"
-                        color="black"
-                        size={30}
-                      />
-                      <Text style={{ fontSize: 12 }}>Gallery</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      onPress={() => {
-                        setImage(null);
-                        setShowImage(false);
-                      }}
-                      style={{ justifyContent: "center", alignItems: "center" }}
-                    >
-                      <MaterialIcons name="cancel" color="black" size={30} />
-                      <Text style={{ fontSize: 12 }}>Cancel</Text>
-                    </TouchableOpacity>
-                  </View>
+                    <MaterialIcons name="camera-alt" color="black" size={30} />
+                    <Text style={{ fontSize: 12 }}>Camera</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={pickImage}
+                    style={{ justifyContent: "center", alignItems: "center" }}
+                  >
+                    <MaterialIcons
+                      name="drive-folder-upload"
+                      color="black"
+                      size={30}
+                    />
+                    <Text style={{ fontSize: 12 }}>Gallery</Text>
+                  </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => {
+                      setImage(null);
                       setShowImage(false);
-                      uploadImage();
                     }}
-                    style={{
-                      flexDirection: "row",
-                      elevation: 6,
-                      marginTop: 4,
-                      paddingVertical: 8,
-                      paddingHorizontal: 15,
-                      borderRadius: 15,
-                      backgroundColor: "rgb(242,145,152)",
-                    }}
+                    style={{ justifyContent: "center", alignItems: "center" }}
                   >
-                    <MaterialIcons name="file-upload" color="black" size={25} />
-                    <Text>upload</Text>
+                    <MaterialIcons name="cancel" color="black" size={30} />
+                    <Text style={{ fontSize: 12 }}>Cancel</Text>
                   </TouchableOpacity>
-                </ImageBackground>
-              </View>
+                </View>
+                <TouchableOpacity
+                  onPress={() => {
+                    setShowImage(false);
+                    uploadImage();
+                  }}
+                  style={{
+                    flexDirection: "row",
+                    elevation: 6,
+                    marginTop: 4,
+                    paddingVertical: 8,
+                    paddingHorizontal: 15,
+                    borderRadius: 15,
+                    backgroundColor: "rgb(242,145,152)",
+                  }}
+                >
+                  <MaterialIcons name="file-upload" color="black" size={25} />
+                  <Text>upload</Text>
+                </TouchableOpacity>
+              </OuterContainer>
             )}
           </View>
         </ScrollView>

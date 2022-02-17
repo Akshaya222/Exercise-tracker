@@ -34,7 +34,10 @@ export const globalStyles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 3,
-    elevation: 4,
+    borderColor: "black",
+    borderWidth: 1,
+    borderStyle: "solid",
+    // elevation: 4,
   },
   imageBackgroundInner: {
     flex: 1,

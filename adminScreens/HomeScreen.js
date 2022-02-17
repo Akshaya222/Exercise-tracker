@@ -13,7 +13,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 
 const HomeScreen = (props) => {
   return (
-    <ImageBackground source={meshBg} style={globalStyles.backgroundImage}>
+    <View style={globalStyles.backgroundImage}>
       <View style={{ ...globalStyles.container }}>
         <View
           style={{
@@ -72,7 +72,7 @@ const HomeScreen = (props) => {
           </View>
         </View>
       </View>
-    </ImageBackground>
+    </View>
   );
 };
 

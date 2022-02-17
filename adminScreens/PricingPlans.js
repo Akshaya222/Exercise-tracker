@@ -47,7 +47,7 @@ const HomeScreen = (props) => {
   };
 
   return (
-    <ImageBackground source={meshBg} style={globalStyles.backgroundImage}>
+    <View style={globalStyles.backgroundImage}>
       <View style={{ ...globalStyles.container }}>
         <View style={{ ...globalStyles.navBar, height: 45, marginTop: 5 }}>
           <Text
@@ -168,7 +168,7 @@ const HomeScreen = (props) => {
           </View>
         </View>
       </View>
-    </ImageBackground>
+    </View>
   );
 };
 

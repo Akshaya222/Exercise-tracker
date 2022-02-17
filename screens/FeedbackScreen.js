@@ -20,6 +20,7 @@ import { api } from "../store/api";
 import { globalStyles } from "../styles/GlobalStyles";
 import meshBg from "../assets/mesh-bg.png";
 import foodImage from "../assets/food.jpg";
+import OuterContainer from "../components/OuterContainer";
 
 export default function ImageScreen(props) {
   const dispatch = useDispatch();
@@ -110,50 +111,45 @@ export default function ImageScreen(props) {
             Comments
           </Text>
         </View>
-        <View
-          style={{
+        <OuterContainer
+          styles={{
             ...globalStyles.outerContainer,
             width: "85%",
             height: 235,
             marginVertical: 15,
           }}
         >
-          <ImageBackground
-            source={meshBg}
-            style={globalStyles.imageBackgroundInner}
+          <View
+            style={{
+              ...globalStyles.innerContainer,
+              padding: "10%",
+              justifyContent: "space-between",
+            }}
           >
-            <View
-              style={{
-                ...globalStyles.innerContainer,
-                padding: "10%",
-                justifyContent: "space-between",
+            <Text style={{ textAlign: "justify", fontWeight: "bold" }}>
+              Hi there!Thank you for your interest in our app.We constantly
+              strive to make our product better,and deliver the most value for
+              our end users - so please share your feedback on what features you
+              need in next versions!
+            </Text>
+            <TouchableOpacity
+              style={{ ...styles.button, ...globalStyles.buttonStyles }}
+              onPress={() => {
+                props.navigation.navigate("formScreen");
               }}
             >
-              <Text style={{ textAlign: "justify", fontWeight: "bold" }}>
-                Hi there!Thank you for your interest in our app.We constantly
-                strive to make our product better,and deliver the most value for
-                our end users - so please share your feedback on what features
-                you need in next versions!
-              </Text>
-              <TouchableOpacity
-                style={{ ...styles.button, ...globalStyles.buttonStyles }}
-                onPress={() => {
-                  props.navigation.navigate("formScreen");
+              <Text
+                style={{
+                  textAlign: "center",
+                  color: "#fff",
+                  fontWeight: "bold",
                 }}
               >
-                <Text
-                  style={{
-                    textAlign: "center",
-                    color: "#fff",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Give Feedback
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </ImageBackground>
-        </View>
+                Give Feedback
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </OuterContainer>
         {feedbacks.length == 0 ? (
           <Text style={{ fontWeight: "bold", marginTop: 20 }}>
             No feedbacks yet.

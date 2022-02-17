@@ -23,6 +23,7 @@ import foodImage from "../assets/food.jpg";
 import axios from "axios";
 import { api } from "../store/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import OuterContainer from "../components/OuterContainer";
 
 export default function ImageScreen(props) {
   const [image, setImage] = useState("");
@@ -121,51 +122,46 @@ export default function ImageScreen(props) {
           </Text>
         ) : (
           <View style={{ width: "100%", alignItems: "center", height: "100%" }}>
-            <View
-              style={{
+            <OuterContainer
+              styles={{
                 ...globalStyles.outerContainer,
                 width: "85%",
                 height: "34%",
               }}
             >
-              <ImageBackground
-                source={meshBg}
-                style={globalStyles.imageBackgroundInner}
+              <View
+                style={{
+                  ...globalStyles.innerContainer,
+                }}
               >
-                <View
-                  style={{
-                    ...globalStyles.innerContainer,
-                  }}
+                {/* <Image source={image?foodImage:userImage}  style={{height:"70%",width:"60%",marginVertical:"5%",borderRadius:image?60:0}} resizeMode="contain"  /> */}
+                <TouchableOpacity onPress={pickImage}>
+                  {image ? (
+                    <Image
+                      source={{ uri: image }}
+                      style={{ width: 160, height: 160, borderRadius: 80 }}
+                    />
+                  ) : userObject.photo ? (
+                    <Image
+                      source={{ uri: userObject.photo }}
+                      style={{ width: 160, height: 160, borderRadius: 80 }}
+                    />
+                  ) : (
+                    <Image
+                      source={userImage}
+                      style={{ height: 140, width: 140 }}
+                    />
+                  )}
+                </TouchableOpacity>
+                <Text
+                  style={{ fontWeight: "bold", marginTop: 6, fontSize: 15 }}
                 >
-                  {/* <Image source={image?foodImage:userImage}  style={{height:"70%",width:"60%",marginVertical:"5%",borderRadius:image?60:0}} resizeMode="contain"  /> */}
-                  <TouchableOpacity onPress={pickImage}>
-                    {image ? (
-                      <Image
-                        source={{ uri: image }}
-                        style={{ width: 160, height: 160, borderRadius: 80 }}
-                      />
-                    ) : userObject.photo ? (
-                      <Image
-                        source={{ uri: userObject.photo }}
-                        style={{ width: 160, height: 160, borderRadius: 80 }}
-                      />
-                    ) : (
-                      <Image
-                        source={userImage}
-                        style={{ height: 140, width: 140 }}
-                      />
-                    )}
-                  </TouchableOpacity>
-                  <Text
-                    style={{ fontWeight: "bold", marginTop: 6, fontSize: 15 }}
-                  >
-                    {userObject.name}
-                  </Text>
-                </View>
-              </ImageBackground>
-            </View>
-            <View
-              style={{
+                  {userObject.name}
+                </Text>
+              </View>
+            </OuterContainer>
+            <OuterContainer
+              styles={{
                 ...globalStyles.outerContainer,
                 marginVertical: 0,
                 width: "85%",
@@ -173,58 +169,53 @@ export default function ImageScreen(props) {
                 marginTop: 15,
               }}
             >
-              <ImageBackground
-                source={meshBg}
-                style={globalStyles.imageBackgroundInner}
+              <View
+                style={{
+                  ...globalStyles.innerContainer,
+                  paddingHorizontal: "12%",
+                  alignItems: "stretch",
+                }}
               >
-                <View
-                  style={{
-                    ...globalStyles.innerContainer,
-                    paddingHorizontal: "12%",
-                    alignItems: "stretch",
-                  }}
-                >
-                  <View style={styles.content}>
-                    <Text style={styles.text}>Coins</Text>
-                    <Text style={{ ...styles.text, marginRight: "3%" }}>
-                      {userObject.coins}
-                    </Text>
-                  </View>
-                  <View style={styles.content}>
-                    <Text style={styles.text}>Code</Text>
-                    <Text style={{ ...styles.text, marginRight: "3%" }}>
-                      {userObject.code}
-                    </Text>
-                  </View>
-                  <TouchableOpacity style={styles.content}>
-                    <Text style={styles.text}>Free Trial</Text>
-                    <MaterialIcons
-                      name="keyboard-arrow-right"
-                      color="black"
-                      size={35}
-                      onPress={() => props.navigation.navigate("paymentScreen")}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.content}>
-                    <Text style={styles.text}>Recent Meals</Text>
-                    <MaterialIcons
-                      name="keyboard-arrow-right"
-                      color="black"
-                      size={35}
-                      onPress={() =>
-                        props.navigation.navigate("recentMealsScreen")
-                      }
-                    />
-                  </TouchableOpacity>
-                  <View style={styles.content}>
-                    <Text style={styles.text}>Contact Us</Text>
-                  </View>
-                  <View style={styles.content}>
-                    <Text style={styles.text}>FAQs</Text>
-                  </View>
+                <View style={styles.content}>
+                  <Text style={styles.text}>Coins</Text>
+                  <Text style={{ ...styles.text, marginRight: "3%" }}>
+                    {userObject.coins}
+                  </Text>
                 </View>
-              </ImageBackground>
-            </View>
+                <View style={styles.content}>
+                  <Text style={styles.text}>Code</Text>
+                  <Text style={{ ...styles.text, marginRight: "3%" }}>
+                    {userObject.code}
+                  </Text>
+                </View>
+                <TouchableOpacity style={styles.content}>
+                  <Text style={styles.text}>Free Trial</Text>
+                  <MaterialIcons
+                    name="keyboard-arrow-right"
+                    color="black"
+                    size={35}
+                    onPress={() => props.navigation.navigate("paymentScreen")}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.content}>
+                  <Text style={styles.text}>Recent Meals</Text>
+                  <MaterialIcons
+                    name="keyboard-arrow-right"
+                    color="black"
+                    size={35}
+                    onPress={() =>
+                      props.navigation.navigate("recentMealsScreen")
+                    }
+                  />
+                </TouchableOpacity>
+                <View style={styles.content}>
+                  <Text style={styles.text}>Contact Us</Text>
+                </View>
+                <View style={styles.content}>
+                  <Text style={styles.text}>FAQs</Text>
+                </View>
+              </View>
+            </OuterContainer>
           </View>
         )}
       </View>
