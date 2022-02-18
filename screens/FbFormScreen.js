@@ -16,6 +16,7 @@ import { Slider } from "react-native-range-slider-expo";
 import { globalStyles } from "../styles/GlobalStyles";
 import meshBg from "../assets/mesh-bg.png";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import TransparentBackground from "../components/TransparentBackground";
 
 export default function ImageScreen(props) {
   const dispatch = useDispatch();
@@ -61,8 +62,8 @@ export default function ImageScreen(props) {
             justifyContent: "center",
           }}
         >
-          <View
-            style={{
+          <TransparentBackground
+            styles={{
               height: 320,
               width: "85%",
               backgroundColor: "rgba(255, 251, 251, 0.28)",
@@ -134,7 +135,7 @@ export default function ImageScreen(props) {
                 Add Feedback
               </Text>
             </TouchableOpacity>
-          </View>
+          </TransparentBackground>
         </View>
       </View>
     </View>

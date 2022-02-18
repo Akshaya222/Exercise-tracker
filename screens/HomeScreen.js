@@ -358,9 +358,9 @@ export default function ImageScreen(props) {
                       <OuterContainer
                         styles={{
                           ...globalStyles.outerContainer,
-                          width: 110,
-                          height: 110,
-                          borderRadius: 60,
+                          width: 150,
+                          height: 150,
+                          borderRadius: 70,
                           marginBottom: -26,
                           zIndex: 10,
                         }}
@@ -376,7 +376,7 @@ export default function ImageScreen(props) {
                         styles={{
                           ...globalStyles.outerContainer,
                           width: 142,
-                          height: "60%",
+                          height: "47%",
                           marginVertical: 0,
                         }}
                       >
@@ -419,9 +419,9 @@ export default function ImageScreen(props) {
                       <OuterContainer
                         styles={{
                           ...globalStyles.outerContainer,
-                          width: 110,
-                          height: 110,
-                          borderRadius: 60,
+                          width: 150,
+                          height: 150,
+                          borderRadius: 70,
                           marginBottom: -26,
                           zIndex: 10,
                         }}
@@ -437,7 +437,7 @@ export default function ImageScreen(props) {
                         styles={{
                           ...globalStyles.outerContainer,
                           width: 142,
-                          height: "60%",
+                          height: "48%",
                           marginVertical: 0,
                         }}
                       >
@@ -483,7 +483,7 @@ export default function ImageScreen(props) {
                       borderRadius: 20,
                       alignItems: "center",
                       justifyContent: "center",
-                      backgroundColor: "rgba(242,145,152,0.5)",
+                      ...globalStyles.buttonStyles,
                     }}
                   >
                     <MaterialIcons

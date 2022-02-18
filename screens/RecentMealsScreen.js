@@ -150,9 +150,9 @@ const RecentMealsScreen = (props) => {
                       <OuterContainer
                         styles={{
                           ...globalStyles.outerContainer,
-                          width: 110,
-                          height: 110,
-                          borderRadius: 60,
+                          width: 150,
+                          height: 150,
+                          borderRadius: 70,
                           marginBottom: -26,
                           zIndex: 10,
                         }}
@@ -168,7 +168,7 @@ const RecentMealsScreen = (props) => {
                         styles={{
                           ...globalStyles.outerContainer,
                           width: 150,
-                          height: 180,
+                          height: 140,
                           marginVertical: 0,
                         }}
                       >

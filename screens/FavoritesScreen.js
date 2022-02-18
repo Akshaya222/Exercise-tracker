@@ -20,6 +20,7 @@ import { api } from "../store/api";
 import { globalStyles } from "../styles/GlobalStyles";
 import meshBg from "../assets/mesh-bg.png";
 import foodImage from "../assets/food.jpg";
+import TransparentBackground from "../components/TransparentBackground";
 
 export default function ImageScreen(props) {
   const dispatch = useDispatch();
@@ -72,8 +73,8 @@ export default function ImageScreen(props) {
               <View style={{ width: "100%", alignItems: "center" }}>
                 {favorites.reverse().map((favorite) => {
                   return (
-                    <View
-                      style={{
+                    <TransparentBackground
+                      styles={{
                         height: 230,
                         width: "70%",
                         margin: 14,
@@ -121,7 +122,7 @@ export default function ImageScreen(props) {
                           {favorite.calories} calories
                         </Text>
                       </View>
-                    </View>
+                    </TransparentBackground>
                   );
                 })}
               </View>

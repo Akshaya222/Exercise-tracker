@@ -21,6 +21,7 @@ import { globalStyles } from "../styles/GlobalStyles";
 import meshBg from "../assets/mesh-bg.png";
 import foodImage from "../assets/food.jpg";
 import OuterContainer from "../components/OuterContainer";
+import TransparentBackground from "../components/TransparentBackground";
 
 export default function ImageScreen(props) {
   const dispatch = useDispatch();
@@ -161,8 +162,8 @@ export default function ImageScreen(props) {
             <View style={{ width: "100%", alignItems: "center" }}>
               {feedbacks.reverse().map((feedback) => {
                 return (
-                  <View
-                    style={{
+                  <TransparentBackground
+                    styles={{
                       width: "86%",
                       backgroundColor: "rgba(255, 251, 251, 0.28)",
                       justifyContent: "space-between",
@@ -264,7 +265,7 @@ export default function ImageScreen(props) {
                         </View>
                       </View>
                     </View>
-                  </View>
+                  </TransparentBackground>
                 );
               })}
             </View>

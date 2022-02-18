@@ -8,6 +8,9 @@ export default function OuterContainer({ styles, children }) {
     <View
       style={{
         ...styles,
+        backgroundColor: "rgba(255, 251, 251, 0.28)",
+        borderWidth: 3,
+        borderColor: "rgba(0,0,0,0.04)",
       }}
     >
       {/* <ImageBackground

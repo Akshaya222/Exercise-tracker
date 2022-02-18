@@ -17,6 +17,7 @@ import axios from "axios";
 import { api } from "../store/api";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPricingPlans } from "../store/actions/payment";
+import TransparentBackground from "../components/TransparentBackground";
 
 const PlanForm = (props) => {
   const dispatch = useDispatch();
@@ -99,8 +100,8 @@ const PlanForm = (props) => {
               justifyContent: "center",
             }}
           >
-            <View
-              style={{
+            <TransparentBackground
+              styles={{
                 height: "100%",
                 width: "85%",
                 backgroundColor: "rgba(255, 251, 251, 0.28)",
@@ -110,248 +111,241 @@ const PlanForm = (props) => {
                 alignItems: "center",
                 paddingVertical: 22,
               }}
+            ></TransparentBackground>
+            <Text style={{ fontWeight: "bold", fontSize: 20, marginBottom: 5 }}>
+              Add Pricing Plan
+            </Text>
+            <View style={styles.inputContainer}>
+              <TextInput
+                placeholder="name of plan"
+                value={inputObj.name}
+                onChangeText={(e) => setInputObj({ ...inputObj, name: e })}
+                style={{ fontWeight: "bold" }}
+              />
+            </View>
+            <View style={styles.inputContainer}>
+              <TextInput
+                placeholder="about plan.."
+                value={inputObj.description}
+                onChangeText={(e) =>
+                  setInputObj({ ...inputObj, description: e })
+                }
+                style={{ fontWeight: "bold" }}
+              />
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                width: "80%",
+                justifyContent: "space-between",
+              }}
             >
-              <Text
-                style={{ fontWeight: "bold", fontSize: 20, marginBottom: 5 }}
-              >
-                Add Pricing Plan
-              </Text>
-              <View style={styles.inputContainer}>
-                <TextInput
-                  placeholder="name of plan"
-                  value={inputObj.name}
-                  onChangeText={(e) => setInputObj({ ...inputObj, name: e })}
-                  style={{ fontWeight: "bold" }}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <TextInput
-                  placeholder="about plan.."
-                  value={inputObj.description}
-                  onChangeText={(e) =>
-                    setInputObj({ ...inputObj, description: e })
-                  }
-                  style={{ fontWeight: "bold" }}
-                />
+              <View>
+                <View
+                  style={{
+                    ...styles.inputContainer,
+                    width: 65,
+                    paddingVertical: 2,
+                  }}
+                >
+                  <TextInput
+                    placeholder="price"
+                    onChangeText={(e) => setInputObj({ ...inputObj, price: e })}
+                    style={{ fontWeight: "bold" }}
+                  />
+                </View>
               </View>
               <View
                 style={{
                   flexDirection: "row",
-                  width: "80%",
+                  alignItems: "center",
+                  marginRight: 12,
+                }}
+              >
+                <View
+                  style={{
+                    ...styles.inputContainer,
+                    width: 80,
+                    paddingVertical: 2,
+                    paddingLeft: 2,
+                  }}
+                >
+                  <TextInput
+                    placeholder="expires in"
+                    value={expiryMonths}
+                    onChangeText={(e) => setExpiryMonths(e)}
+                    style={{ fontWeight: "bold" }}
+                  />
+                </View>
+                <Text style={{ marginLeft: 4, fontWeight: "bold" }}>
+                  months
+                </Text>
+              </View>
+            </View>
+            <View style={{ width: "80%", marginTop: 5 }}>
+              <Text style={{ fontWeight: "bold" }}>Benefits:</Text>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <View
+                  style={{
+                    ...styles.inputContainer,
+                    width: "85%",
+                    marginRight: 10,
+                  }}
+                >
+                  <TextInput
+                    placeholder="benefit"
+                    value={data}
+                    style={{ fontWeight: "bold" }}
+                    onChangeText={(e) => setData(e)}
+                  />
+                </View>
+                <Feather
+                  name="plus-circle"
+                  size={26}
+                  color="rgba(0,0,0,0.6)"
+                  onPress={() => {
+                    setArray([...array, data]);
+                    setData("");
+                  }}
+                />
+              </View>
+              <ScrollView style={{ height: 55 }}>
+                {array.length == 0 ? (
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      color: "rgba(0,0,0,0.5)",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Added benefits{" "}
+                  </Text>
+                ) : (
+                  <View>
+                    {array.map((bene) => {
+                      return (
+                        <Text
+                          style={{
+                            marginVertical: 2,
+                            fontWeight: "bold",
+                            color: "rgba(0,0,0,0.6)",
+                          }}
+                          key={bene}
+                        >
+                          {bene}
+                        </Text>
+                      );
+                    })}
+                  </View>
+                )}
+              </ScrollView>
+            </View>
+            <View style={{ width: "80%", marginTop: 5 }}>
+              <Text style={{ fontWeight: "bold" }}>Coupons:</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
                   justifyContent: "space-between",
                 }}
               >
-                <View>
-                  <View
-                    style={{
-                      ...styles.inputContainer,
-                      width: 65,
-                      paddingVertical: 2,
-                    }}
-                  >
-                    <TextInput
-                      placeholder="price"
-                      onChangeText={(e) =>
-                        setInputObj({ ...inputObj, price: e })
-                      }
-                      style={{ fontWeight: "bold" }}
-                    />
-                  </View>
+                <View
+                  style={{
+                    ...styles.inputContainer,
+                    width: 115,
+                    paddingLeft: 5,
+                  }}
+                >
+                  <TextInput
+                    value={coupon.name}
+                    placeholder="coupon code"
+                    onChangeText={(e) => setCoupon({ ...coupon, name: e })}
+                    style={{ fontWeight: "bold" }}
+                  />
                 </View>
                 <View
                   style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    marginRight: 12,
+                    ...styles.inputContainer,
+                    width: 65,
+                    paddingLeft: 1,
                   }}
                 >
-                  <View
-                    style={{
-                      ...styles.inputContainer,
-                      width: 80,
-                      paddingVertical: 2,
-                      paddingLeft: 2,
-                    }}
-                  >
-                    <TextInput
-                      placeholder="expires in"
-                      value={expiryMonths}
-                      onChangeText={(e) => setExpiryMonths(e)}
-                      style={{ fontWeight: "bold" }}
-                    />
-                  </View>
-                  <Text style={{ marginLeft: 4, fontWeight: "bold" }}>
-                    months
-                  </Text>
-                </View>
-              </View>
-              <View style={{ width: "80%", marginTop: 5 }}>
-                <Text style={{ fontWeight: "bold" }}>Benefits:</Text>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <View
-                    style={{
-                      ...styles.inputContainer,
-                      width: "85%",
-                      marginRight: 10,
-                    }}
-                  >
-                    <TextInput
-                      placeholder="benefit"
-                      value={data}
-                      style={{ fontWeight: "bold" }}
-                      onChangeText={(e) => setData(e)}
-                    />
-                  </View>
-                  <Feather
-                    name="plus-circle"
-                    size={26}
-                    color="rgba(0,0,0,0.6)"
-                    onPress={() => {
-                      setArray([...array, data]);
-                      setData("");
-                    }}
+                  <TextInput
+                    value={coupon.amount}
+                    placeholder="amount"
+                    keyboardType="numeric"
+                    onChangeText={(e) => setCoupon({ ...coupon, amount: e })}
+                    style={{ fontWeight: "bold" }}
                   />
                 </View>
-                <ScrollView style={{ height: 55 }}>
-                  {array.length == 0 ? (
-                    <Text
-                      style={{
-                        fontSize: 16,
-                        color: "rgba(0,0,0,0.5)",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Added benefits{" "}
-                    </Text>
-                  ) : (
-                    <View>
-                      {array.map((bene) => {
-                        return (
+                <Feather
+                  name="plus-circle"
+                  size={26}
+                  color="rgba(0,0,0,0.6)"
+                  onPress={() => {
+                    setCoupons([
+                      ...coupons,
+                      { name: coupon.name, amount: Number(coupon.amount) },
+                    ]);
+                    setCoupon({ amount: 0, name: "" });
+                  }}
+                />
+              </View>
+              <ScrollView style={{ height: 55 }}>
+                {coupons.length == 0 ? (
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      color: "rgba(0,0,0,0.5)",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Added Coupons{" "}
+                  </Text>
+                ) : (
+                  <View>
+                    {coupons.map((coupon) => {
+                      return (
+                        <View
+                          style={{ marginVertical: 2, flexDirection: "row" }}
+                          key={coupon.name}
+                        >
                           <Text
                             style={{
-                              marginVertical: 2,
+                              fontWeight: "bold",
+                              color: "rgba(0,0,0,0.6)",
+                              marginRight: 20,
+                            }}
+                          >
+                            {coupon.name}
+                          </Text>
+                          <Text
+                            style={{
                               fontWeight: "bold",
                               color: "rgba(0,0,0,0.6)",
                             }}
-                            key={bene}
                           >
-                            {bene}
+                            {coupon.amount}
                           </Text>
-                        );
-                      })}
-                    </View>
-                  )}
-                </ScrollView>
-              </View>
-              <View style={{ width: "80%", marginTop: 5 }}>
-                <Text style={{ fontWeight: "bold" }}>Coupons:</Text>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <View
-                    style={{
-                      ...styles.inputContainer,
-                      width: 115,
-                      paddingLeft: 5,
-                    }}
-                  >
-                    <TextInput
-                      value={coupon.name}
-                      placeholder="coupon code"
-                      onChangeText={(e) => setCoupon({ ...coupon, name: e })}
-                      style={{ fontWeight: "bold" }}
-                    />
+                        </View>
+                      );
+                    })}
                   </View>
-                  <View
-                    style={{
-                      ...styles.inputContainer,
-                      width: 65,
-                      paddingLeft: 1,
-                    }}
-                  >
-                    <TextInput
-                      value={coupon.amount}
-                      placeholder="amount"
-                      keyboardType="numeric"
-                      onChangeText={(e) => setCoupon({ ...coupon, amount: e })}
-                      style={{ fontWeight: "bold" }}
-                    />
-                  </View>
-                  <Feather
-                    name="plus-circle"
-                    size={26}
-                    color="rgba(0,0,0,0.6)"
-                    onPress={() => {
-                      setCoupons([
-                        ...coupons,
-                        { name: coupon.name, amount: Number(coupon.amount) },
-                      ]);
-                      setCoupon({ amount: 0, name: "" });
-                    }}
-                  />
-                </View>
-                <ScrollView style={{ height: 55 }}>
-                  {coupons.length == 0 ? (
-                    <Text
-                      style={{
-                        fontSize: 16,
-                        color: "rgba(0,0,0,0.5)",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Added Coupons{" "}
-                    </Text>
-                  ) : (
-                    <View>
-                      {coupons.map((coupon) => {
-                        return (
-                          <View
-                            style={{ marginVertical: 2, flexDirection: "row" }}
-                            key={coupon.name}
-                          >
-                            <Text
-                              style={{
-                                fontWeight: "bold",
-                                color: "rgba(0,0,0,0.6)",
-                                marginRight: 20,
-                              }}
-                            >
-                              {coupon.name}
-                            </Text>
-                            <Text
-                              style={{
-                                fontWeight: "bold",
-                                color: "rgba(0,0,0,0.6)",
-                              }}
-                            >
-                              {coupon.amount}
-                            </Text>
-                          </View>
-                        );
-                      })}
-                    </View>
-                  )}
-                </ScrollView>
-              </View>
-              <TouchableOpacity
-                onPress={() => submitHandler()}
-                style={{
-                  ...globalStyles.buttonStyles,
-                  paddingVertical: 7,
-                  paddingHorizontal: 25,
-                  borderRadius: 20,
-                  marginTop: 11,
-                }}
-              >
-                <Text style={{ fontWeight: "bold", fontSize: 17 }}>
-                  Proceed
-                </Text>
-              </TouchableOpacity>
+                )}
+              </ScrollView>
             </View>
+            <TouchableOpacity
+              onPress={() => submitHandler()}
+              style={{
+                ...globalStyles.buttonStyles,
+                paddingVertical: 7,
+                paddingHorizontal: 25,
+                borderRadius: 20,
+                marginTop: 11,
+              }}
+            >
+              <Text style={{ fontWeight: "bold", fontSize: 17 }}>Proceed</Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>

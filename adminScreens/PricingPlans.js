@@ -17,6 +17,7 @@ import axios from "axios";
 import { api } from "../store/api";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPricingPlans } from "../store/actions/payment";
+import TransparentBackground from "../components/TransparentBackground";
 
 const HomeScreen = (props) => {
   const dispatch = useDispatch();
@@ -73,8 +74,8 @@ const HomeScreen = (props) => {
                 <View style={{ width: "100%", alignItems: "center" }}>
                   {pricingData.map((pricing) => {
                     return (
-                      <View
-                        style={{
+                      <TransparentBackground
+                        styles={{
                           width: "87%",
                           marginVertical: 10,
                           backgroundColor: "rgba(255, 251, 251, 0.28)",
@@ -142,7 +143,7 @@ const HomeScreen = (props) => {
                             {pricing.numOfUsers}
                           </Text>{" "}
                         </Text>
-                      </View>
+                      </TransparentBackground>
                     );
                   })}
                 </View>

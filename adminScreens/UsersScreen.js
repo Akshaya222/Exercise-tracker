@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { fetchAllUsers } from "../store/actions/auth";
 import OuterContainer from "../components/OuterContainer";
+import TransparentBackground from "../components/TransparentBackground";
 
 const HomeScreen = (props) => {
   const dispatch = useDispatch();
@@ -67,7 +68,6 @@ const HomeScreen = (props) => {
                     <TouchableOpacity
                       key={user._id}
                       style={{
-                        ...globalStyles.buttonStyles,
                         width: "87%",
                         marginVertical: 10,
                         borderRadius: 35,
