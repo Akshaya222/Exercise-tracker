@@ -26,6 +26,7 @@ import AdminPricingScreen from "../adminScreens/PricingPlans";
 import AdminUsersScreen from "../adminScreens/UsersScreen";
 import PlanForm from "../adminScreens/PlanForm";
 import UserScreen from "../adminScreens/UserScreen";
+import VideoPicker from "../screens/VideoPicker";
 
 const authStackNavigator = createStackNavigator(
   {
@@ -126,6 +127,15 @@ const DrawerNavigator = createDrawerNavigator(
         title: "Favorites",
         drawerIcon: ({ tintColor }) => (
           <Feather name="heart" color={tintColor} size={20} />
+        ),
+      },
+    },
+    videoScreen: {
+      screen: VideoPicker,
+      navigationOptions: {
+        title: "Exercise Tracker",
+        drawerIcon: ({ tintColor }) => (
+          <Feather name="activity" color={tintColor} size={20} />
         ),
       },
     },

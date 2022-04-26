@@ -160,62 +160,6 @@ export default function ImageScreen(props) {
                 </Text>
               </View>
             </OuterContainer>
-            <OuterContainer
-              styles={{
-                ...globalStyles.outerContainer,
-                marginVertical: 0,
-                width: "85%",
-                height: "47%",
-                marginTop: 15,
-              }}
-            >
-              <View
-                style={{
-                  ...globalStyles.innerContainer,
-                  paddingHorizontal: "12%",
-                  alignItems: "stretch",
-                }}
-              >
-                <View style={styles.content}>
-                  <Text style={styles.text}>Coins</Text>
-                  <Text style={{ ...styles.text, marginRight: "3%" }}>
-                    {userObject.coins}
-                  </Text>
-                </View>
-                <View style={styles.content}>
-                  <Text style={styles.text}>Code</Text>
-                  <Text style={{ ...styles.text, marginRight: "3%" }}>
-                    {userObject.code}
-                  </Text>
-                </View>
-                <TouchableOpacity style={styles.content}>
-                  <Text style={styles.text}>Free Trial</Text>
-                  <MaterialIcons
-                    name="keyboard-arrow-right"
-                    color="black"
-                    size={35}
-                    onPress={() => props.navigation.navigate("paymentScreen")}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.content}>
-                  <Text style={styles.text}>Recent Meals</Text>
-                  <MaterialIcons
-                    name="keyboard-arrow-right"
-                    color="black"
-                    size={35}
-                    onPress={() =>
-                      props.navigation.navigate("recentMealsScreen")
-                    }
-                  />
-                </TouchableOpacity>
-                <View style={styles.content}>
-                  <Text style={styles.text}>Contact Us</Text>
-                </View>
-                <View style={styles.content}>
-                  <Text style={styles.text}>FAQs</Text>
-                </View>
-              </View>
-            </OuterContainer>
           </View>
         )}
       </View>

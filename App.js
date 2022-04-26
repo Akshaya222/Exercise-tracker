@@ -15,6 +15,7 @@ import thunk from "redux-thunk";
 import "react-native-url-polyfill/auto";
 import bgImage from "./assets/bg-2.jpg";
 import { globalStyles } from "./styles/GlobalStyles";
+import VideoRecorder from "./VideoRecorder";
 
 import Navigator from "./navigation/Navigator";
 import authReducer from "./store/reducers/auth";
