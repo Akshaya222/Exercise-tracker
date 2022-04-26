@@ -1,4 +1,5 @@
-# To run application code
+# Tracking and Analysis of Physical Activity & Nutritional Intake using AI
+## To run application code
 step 1: clone the repo
 <br/>
 step 2: cd Exercise-tracker
